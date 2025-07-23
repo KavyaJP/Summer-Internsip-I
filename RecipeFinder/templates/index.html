@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Recipe Finder</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Interactive Recipe Finder 🍲</h1>
+        <p>Find amazing recipes with the ingredients you have on hand.</p>
+      </header>
+
+      <form action="/" method="POST" class="search-form">
+        <input
+          type="text"
+          name="ingredient"
+          placeholder="Enter a primary ingredient (e.g., paneer)"
+          required
+        />
+        <button type="submit">Find Recipes</button>
+      </form>
+
+      <main>
+        {% if recipes %}
+        <div class="recipe-grid">
+          {% for recipe in recipes %}
+          <a
+            href="https://www.themealdb.com/meal/{{ recipe.idMeal }}"
+            target="_blank"
+            class="recipe-card"
+          >
+            <img
+              src="{{ recipe.strMealThumb }}"
+              alt="Photo of {{ recipe.strMeal }}"
+            />
+            <div class="recipe-title">
+              <h3>{{ recipe.strMeal }}</h3>
+            </div>
+          </a>
+          {% endfor %}
+        </div>
+        {% elif message %}
+        <div class="message-display">
+          <p>{{ message }}</p>
+        </div>
+        {% endif %}
+      </main>
+    </div>
+  </body>
+</html>
