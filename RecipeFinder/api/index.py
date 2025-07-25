@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 import requests
 
 # Initialize the Flask application
-app = Flask(__name__)
+app = Flask(__name__, template_folder="../templates", static_folder="../static")
 
 # TheMealDB API endpoint for searching by ingredient
 API_BASE_URL = "https://www.themealdb.com/api/json/v1/1/filter.php"
