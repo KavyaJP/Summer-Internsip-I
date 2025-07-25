@@ -10,7 +10,6 @@ BASE_URL = "https://open-weather13.p.rapidapi.com/city"
 
 headers = {"x-rapidapi-key": RAPIDAPI_KEY, "x-rapidapi-host": RAPIDAPI_HOST}
 
-
 def get_current_weather(city):
     params = {"city": city, "lang": "EN", "units": "metric"}
     response = requests.get(BASE_URL, headers=headers, params=params)
